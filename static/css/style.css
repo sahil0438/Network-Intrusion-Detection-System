@@ -1,0 +1,542 @@
+/* static/css/style.css */
+
+/* General Body and Container Styles */
+body {
+    font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace; /* Techy monospace font */
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #0a0a0a, #1a1a1a); /* Dark gradient background */
+    color: #00ff00; /* Neon green text for a techy feel */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1400px; /* Slightly wider container */
+    margin: 20px auto;
+    background-color: #1a1a1a; /* Darker background for the container */
+    border: 1px solid #005500; /* Subtle green border */
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 5px rgba(0, 255, 0, 0.1); /* Enhanced green glow effect */
+    border-radius: 12px; /* Slightly more rounded corners */
+    padding: 30px;
+    flex-grow: 1; /* Allow container to grow */
+}
+
+h1, h2 {
+    text-align: center;
+    color: #00ff00; /* Bright green heading */
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8); /* Stronger text glow */
+    margin-bottom: 35px;
+    font-size: 2.8em; /* Larger main heading */
+    letter-spacing: 3px; /* More prominent letter spacing */
+    text-transform: uppercase; /* Uppercase for headings */
+}
+
+h2 {
+    font-size: 1.8em; /* Smaller for section headings */
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-shadow: 0 0 7px rgba(0, 255, 0, 0.5);
+    border-bottom: 1px dashed #004400; /* Dashed green line below h2 */
+    padding-bottom: 10px;
+}
+
+/* Section Containers (Controls, PCAP Upload, Blocking Controls, Logs) */
+.controls, .pcap-upload, .blocking-controls, .logs {
+    margin-bottom: 30px;
+    padding: 25px;
+    background-color: #2a2a2a; /* Slightly lighter dark background */
+    border-radius: 8px; /* Consistent border radius */
+    border: 1px solid #004400; /* Darker green border */
+    box-shadow: inset 0 0 8px rgba(0, 255, 0, 0.15), 0 0 10px rgba(0, 255, 0, 0.1); /* Inner and outer glow */
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+    color: #00ffff; /* Cyan color for labels */
+    display: block; /* Ensure labels are on their own line */
+    margin-bottom: 8px;
+    text-shadow: 0 0 3px rgba(0, 255, 255, 0.3); /* Subtle label glow */
+}
+
+/* Inputs and Textareas */
+input[type="text"],
+textarea,
+input[type="file"],
+select { /* Added select here */
+    background-color: #0d0d0d; /* Very dark input background */
+    color: #00ff00; /* Neon green input text */
+    border: 1px solid #008800; /* Green input border */
+    border-radius: 4px; /* Slightly more rounded */
+    padding: 12px; /* Increased padding */
+    font-family: 'Consolas', monospace;
+    font-size: 1em; /* Standard font size */
+    box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2); /* Inner glow for inputs */
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: calc(100% - 24px); /* Account for padding */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+input[type="text"]:focus,
+textarea:focus,
+input[type="file"]:focus,
+select:focus { /* Added select here */
+    border-color: #00ffff; /* Cyan border on focus */
+    box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.6), 0 0 15px rgba(0, 255, 255, 0.8); /* More prominent glow */
+    outline: none;
+}
+
+textarea {
+    resize: vertical; /* Allow vertical resizing only */
+    min-height: 100px; /* Taller textarea */
+}
+
+/* Buttons */
+button {
+    padding: 14px 25px; /* Larger buttons */
+    border: none;
+    border-radius: 6px; /* More rounded buttons */
+    cursor: pointer;
+    font-size: 1.1em; /* Larger font size */
+    font-weight: bold;
+    font-family: 'Consolas', monospace;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s ease-out;
+    margin-right: 15px; /* Spacing between buttons */
+    margin-top: 15px; /* Space above button row */
+    text-transform: uppercase; /* Uppercase button text */
+    letter-spacing: 1px;
+}
+
+/* Specific Button Styles */
+#startButton {
+    background-color: #008800; /* Darker green */
+    color: #e0ffe0; /* Light green text */
+    box-shadow: 0 0 10px rgba(0, 150, 0, 0.5);
+}
+
+#startButton:hover {
+    background-color: #00aa00; /* Brighter green on hover */
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+    transform: translateY(-2px); /* Lift effect */
+}
+
+#stopButton {
+    background-color: #880000; /* Darker red */
+    color: #ffe0e0; /* Light red text */
+    box-shadow: 0 0 10px rgba(150, 0, 0, 0.5);
+}
+
+#stopButton:hover {
+    background-color: #aa0000; /* Brighter red on hover */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    transform: translateY(-2px); /* Lift effect */
+}
+
+#clearButton, #uploadPcapButton, #applyBlocksButton, #refreshBlocksButton,
+#refreshInterfacesButton, /* Added refresh interfaces button */
+.search-bar button { /* Apply to search buttons too */
+    background-color: #005f5f; /* Teal/Cyan-ish */
+    color: #e0ffff; /* Light cyan text */
+    box-shadow: 0 0 8px rgba(0, 100, 100, 0.4);
+}
+
+#clearButton:hover, #uploadPcapButton:hover, #applyBlocksButton:hover, #refreshBlocksButton:hover,
+#refreshInterfacesButton:hover, /* Added refresh interfaces button */
+.search-bar button:hover {
+    background-color: #007a7a; /* Brighter teal on hover */
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+
+/* Disabled states */
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled { /* Added select here */
+    background-color: #4a4a4a !important; /* Dark grey */
+    color: #888 !important; /* Muted text */
+    cursor: not-allowed !important;
+    opacity: 0.6;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* Status Messages */
+.status-message {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #00ffff; /* Cyan for status */
+    text-shadow: 0 0 7px rgba(0, 255, 255, 0.6);
+    font-size: 1.2em;
+    padding: 5px 0;
+}
+/* Specific status message colors (overriding the general .status-message color) */
+.status-success { color: #00ff00 !important; text-shadow: 0 0 7px rgba(0, 255, 0, 0.6) !important; }
+.status-error { color: #ff0000 !important; text-shadow: 0 0 7px rgba(255, 0, 0, 0.6) !important; }
+.status-info { color: #00ffff !important; text-shadow: 0 0 7px rgba(0, 255, 255, 0.6) !important; }
+
+
+/* Packet Table Container */
+.packet-table-container {
+    max-height: 600px; /* Increased height */
+    overflow-y: auto;
+    border: 1px solid #005500;
+    border-radius: 8px; /* Consistent border radius */
+    margin-top: 25px;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.25); /* Stronger green glow around table */
+    background-color: #0d0d0d; /* Very dark background for table container */
+}
+
+/* Tables (Both packetTable and flaggedPacketTable) */
+#packetTable, #flaggedPacketTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #0d0d0d; /* Table background */
+}
+
+#packetTable th, #packetTable td,
+#flaggedPacketTable th, #flaggedPacketTable td {
+    border: 1px solid #004400; /* Green border for cells */
+    padding: 12px; /* Increased padding */
+    text-align: left;
+    vertical-align: top;
+    font-size: 0.9em; /* Slightly smaller font for table data */
+    color: #00ff00; /* Neon green text */
+    white-space: nowrap; /* Prevent content from wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    max-width: 200px; /* Default max-width for columns */
+}
+
+#packetTable th, #flaggedPacketTable th {
+    background-color: #003300; /* Darker green for headers */
+    color: #00ffff; /* Cyan text for headers */
+    position: sticky;
+    top: 0;
+    z-index: 2; /* Ensure header stays on top when scrolling */
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#packetTable tbody tr:nth-child(even),
+#flaggedPacketTable tbody tr:nth-child(even) {
+    background-color: #151515; /* Slightly lighter rows */
+}
+
+#packetTable tbody tr:hover,
+#flaggedPacketTable tbody tr:hover {
+    background-color: #252525; /* Darker on hover */
+    box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.15); /* Subtle inner glow on hover */
+}
+
+/* --- Flagged Rows Highlighting --- */
+/* These classes will be applied by JavaScript based on packet flags */
+tr.flagged-targeted {
+    background-color: #330033 !important; /* Dark purple */
+    color: #ff00ff !important; /* Magenta text */
+    box-shadow: 0 0 8px rgba(255, 0, 255, 0.4) !important; /* Magenta glow */
+}
+tr.flagged-targeted:hover {
+    background-color: #440044 !important; /* Darker purple on hover */
+    box-shadow: 0 0 12px rgba(255, 0, 255, 0.7) !important;
+}
+
+tr.flagged-intrusion {
+    background-color: #4d2d00 !important; /* Dark orange/brown */
+    color: #ffa500 !important; /* Bright orange text */
+    box-shadow: 0 0 8px rgba(255, 165, 0, 0.4) !important; /* Orange glow */
+}
+tr.flagged-intrusion:hover {
+    background-color: #663d00 !important; /* Darker orange on hover */
+    box-shadow: 0 0 12px rgba(255, 165, 0, 0.7) !important;
+}
+
+tr.flagged-both {
+    background-color: #402020 !important; /* A darker, somewhat reddish-purple blend */
+    color: #ff88ff !important; /* Lighter magenta/orange blend */
+    border-left: 5px solid #ff00ff !important; /* Strong left border to indicate severity */
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.6), 0 0 15px rgba(255, 165, 0, 0.6) !important; /* Dual glow */
+}
+tr.flagged-both:hover {
+    background-color: #502828 !important; /* Even darker on hover */
+}
+
+/* Flag Indicators (T and I in the main table) */
+.flag-indicator {
+    font-weight: bold;
+    margin-left: 5px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    display: inline-block; /* Allow multiple flags on one line */
+    min-width: 15px; /* Ensure consistent size */
+    text-align: center;
+    line-height: 1; /* Adjust line height */
+    box-shadow: 0 0 5px rgba(255,255,255,0.2);
+}
+.flag-indicator[title*="Intrusion"] {
+    background-color: #f44336; /* Red */
+    color: white;
+    border: 1px solid #f44336;
+}
+.flag-indicator[title*="Targeted"] {
+    background-color: #9c27b0; /* Deep Purple */
+    color: white;
+    border: 1px solid #9c27b0;
+}
+
+
+/* Column Widths for #packetTable */
+#packetTable th:nth-child(1), #packetTable td:nth-child(1) { width: 9%; max-width: 100px; }  /* Time */
+#packetTable th:nth-child(2), #packetTable td:nth-child(2) { width: 10%; max-width: 110px; } /* Source IP */
+#packetTable th:nth-child(3), #packetTable td:nth-child(3) { width: 10%; max-width: 110px; } /* Destination IP */
+#packetTable th:nth-child(4), #packetTable td:nth-child(4) { width: 6%; max-width: 70px; }  /* Protocol */
+#packetTable th:nth-child(5), #packetTable td:nth-child(5) { width: 5%; max-width: 60px; }  /* Length */
+#packetTable th:nth-child(6), #packetTable td:nth-child(6) { width: 18%; max-width: 200px; } /* Summary */
+#packetTable th:nth-child(7), #packetTable td:nth-child(7) { width: 32%; max-width: 350px; } /* Raw Payload */
+#packetTable th:nth-child(8), #packetTable td:nth-child(8) { width: 10%; max-width: 70px; text-align: center; } /* Flags */
+
+/* Column Widths for #flaggedPacketTable */
+#flaggedPacketTable th:nth-child(1), #flaggedPacketTable td:nth-child(1) { width: 9%; max-width: 100px; } /* Time */
+#flaggedPacketTable th:nth-child(2), #flaggedPacketTable td:nth-child(2) { width: 10%; max-width: 110px; } /* Src IP */
+#flaggedPacketTable th:nth-child(3), #flaggedPacketTable td:nth-child(3) { width: 10%; max-width: 110px; } /* Dst IP */
+#flaggedPacketTable th:nth-child(4), #flaggedPacketTable td:nth-child(4) { width: 6%; max-width: 70px; } /* Proto */
+#flaggedPacketTable th:nth-child(5), #flaggedPacketTable td:nth-child(5) { width: 5%; max-width: 60px; } /* Len */
+#flaggedPacketTable th:nth-child(6), #flaggedPacketTable td:nth-child(6) { width: 18%; max-width: 200px; } /* Summary */
+#flaggedPacketTable th:nth-child(7), #flaggedPacketTable td:nth-child(7) { width: 25%; max-width: 300px; } /* Reasons */
+#flaggedPacketTable th:nth-child(8), #flaggedPacketTable td:nth-child(8) { width: 17%; max-width: 200px; } /* Payload */
+
+
+/* Block Status Box */
+.block-status-box {
+    background: #1a1a1a; /* Dark background */
+    border: 1px solid #005500;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    max-height: 280px; /* Increased height */
+    overflow-y: auto;
+    font-size: 0.9em;
+    box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.1);
+}
+.block-status-box strong {
+    color: #00ffff; /* Cyan for headings */
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);
+}
+.block-status-box ul {
+    list-style-type: none; /* Remove default bullets */
+    padding-left: 0;
+    margin: 5px 0;
+}
+.block-status-box li {
+    margin-bottom: 5px;
+    word-break: break-all; /* Break long IPs/domains */
+    padding-left: 15px;
+    position: relative;
+    color: #00ff00; /* Neon green text */
+}
+.block-status-box li:before {
+    content: "»"; /* Custom sci-fi bullet point */
+    color: #00ffff; /* Cyan bullet */
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* Search Bar Styling */
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #004400;
+    box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.1);
+}
+
+.search-bar input[type="text"] {
+    flex-grow: 1; /* Allow input to take available space */
+    margin-bottom: 0; /* Remove default margin */
+}
+
+.search-bar button {
+    margin-top: 0; /* Align buttons horizontally */
+    margin-bottom: 0;
+    padding: 10px 15px; /* Smaller buttons for search bar */
+    font-size: 0.9em;
+}
+
+/* Interface dropdown and button layout */
+.interface-selection {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px; /* Space below this group */
+}
+
+.interface-selection select {
+    flex-grow: 1; /* Allow select to take available space */
+    margin-bottom: 0; /* Remove default margin */
+}
+
+.interface-selection button {
+    margin-top: 0; /* Align button horizontally */
+    margin-bottom: 0;
+    padding: 10px 15px; /* Smaller button for this group */
+    font-size: 0.9em;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .container {
+        padding: 25px;
+    }
+    h1 {
+        font-size: 2.2em;
+    }
+    h2 {
+        font-size: 1.6em;
+    }
+    button {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+    #packetTable th, #packetTable td,
+    #flaggedPacketTable th, #flaggedPacketTable td {
+        font-size: 0.8em;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        margin: 15px auto;
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    .controls {
+        grid-template-columns: 1fr; /* Stack labels and inputs */
+        gap: 10px;
+    }
+    .controls label {
+        text-align: left; /* Align labels to left when stacked */
+        padding-right: 0;
+    }
+    input[type="text"], textarea, input[type="file"], select { /* Added select */
+        width: 100%; /* Full width */
+    }
+    button {
+        width: calc(100% - 10px); /* Full width, account for margin */
+        margin-right: 0;
+    }
+    .status-message {
+        grid-column: span 1; /* No longer spans 2 columns */
+    }
+    .packet-table-container {
+        overflow-x: auto; /* Enable horizontal scrolling for tables */
+    }
+    table {
+        min-width: 700px; /* Ensure horizontal scroll is triggered */
+    }
+    .search-bar {
+        flex-wrap: wrap; /* Allow search bar items to wrap */
+    }
+    .search-bar input[type="text"] {
+        width: 100%; /* Full width when wrapped */
+        margin-bottom: 10px;
+    }
+    .search-bar button {
+        width: calc(50% - 5px); /* Two buttons per row */
+        margin-right: 0;
+    }
+    .interface-selection {
+        flex-wrap: wrap;
+    }
+    .interface-selection select,
+    .interface-selection button {
+        width: 100%; /* Full width when wrapped */
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        margin: 10px auto;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+    h2 {
+        font-size: 1.3em;
+    }
+    .controls, .pcap-upload, .blocking-controls, .logs {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+    #packetTable th, #packetTable td,
+    #flaggedPacketTable th, #flaggedPacketTable td {
+        font-size: 0.75em;
+        padding: 8px;
+    }
+    .block-status-box {
+        max-height: 200px; /* Adjust for smaller screens */
+    }
+    .search-bar button {
+        width: calc(100% - 10px); /* Stack buttons on very small screens */
+    }
+    .interface-selection select,
+    .interface-selection button {
+        margin-bottom: 5px; /* Less margin when stacked */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em;
+        letter-spacing: 1px;
+    }
+    h2 {
+        font-size: 1.2em;
+    }
+    .status-message {
+        font-size: 1em;
+    }
+    button {
+        font-size: 0.85em;
+        padding: 8px 12px;
+    }
+    #packetTable th, #packetTable td,
+    #flaggedPacketTable th, #flaggedPacketTable td {
+        font-size: 0.7em;
+        padding: 6px;
+    }
+}

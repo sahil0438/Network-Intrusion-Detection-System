@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETSECURE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>NETSECURE</h1>
+
+        <div class="controls">
+            <h2>Live Capture Settings</h2>
+            <label for="interfaceSelect">Interface (Linux/Windows):</label>
+            <div class="interface-selection">
+                <select id="interfaceSelect">
+                    <option value="any">Any (Auto-detect)</option>
+                    <!-- Options will be dynamically loaded by JavaScript -->
+                </select>
+                <button id="refreshInterfacesButton">Refresh Interfaces</button>
+            </div>
+
+            <label for="filter">BPF Filter (e.g., tcp port 80, host 192.168.1.1):</label>
+            <input type="text" id="filter" placeholder="e.g., tcp port 80 or icmp">
+
+            <label for="domainFilter">Target Domains for Monitoring (comma or newline separated):</label>
+            <textarea id="domainFilter" rows="3" placeholder="example.com, malicious.net"></textarea>
+
+            <button id="startButton">Start Capture</button>
+            <button id="stopButton" disabled>Stop Capture</button>
+            <button id="clearButton">Clear Display</button>
+            <span id="statusMessage" class="status-message">Ready.</span>
+        </div>
+
+        <div class="pcap-upload">
+            <h2>PCAP File Analysis</h2>
+            <label for="pcapFile">Upload PCAP/PCAPNG File:</label>
+            <input type="file" id="pcapFile" accept=".pcap,.pcapng">
+            <button id="uploadPcapButton">Analyze PCAP</button>
+            <span id="pcapStatusMessage" class="status-message"></span>
+        </div>
+
+        <div class="blocking-controls">
+            <h2>IP/Domain Blocking Management (Requires `sudo` for app)</h2>
+            <p><strong>Note:</strong> These rules will be applied to your system's firewall (iptables/Windows Firewall) when a live capture starts or when you click "Apply Blocks" while a live capture is running. They will be cleared when the capture stops.</p>
+
+            <label for="sourceIpsBlock">Block Source IPs from Accessing Network (comma or newline separated):</label>
+            <textarea id="sourceIpsBlock" rows="3" placeholder="192.168.1.10, 10.0.0.5"></textarea>
+
+            <label for="destIpsBlock">Block Destination IPs Users Can Access (comma or newline separated):</label>
+            <textarea id="destIpsBlock" rows="3" placeholder="8.8.8.8, 1.1.1.1"></textarea>
+
+            <label for="domainsBlock">Block Domains Users Can Access (comma or newline separated - resolves to IPs):</label>
+            <textarea id="domainsBlock" rows="3" placeholder="evil.com, badsite.org"></textarea>
+
+            <button id="applyBlocksButton">Apply Blocks</button>
+            <button id="refreshBlocksButton">Refresh Block Status</button>
+            
+            <div class="block-status-box">
+                <strong>Current Block Status:</strong>
+                <ul id="blockStatusList">
+                    <li>Loading...</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="logs">
+            <h2>Flagged Packets Log (<span id="flaggedPacketCount">0</span>)</h2>
+            <div class="search-bar">
+                <input type="text" id="flaggedSearchInput" placeholder="Search flagged packets (IP, protocol, reason, payload)...">
+                <button id="flaggedSearchButton">Search</button>
+                <button id="flaggedClearSearchButton">Clear Search</button>
+            </div>
+            <div class="packet-table-container">
+                <table id="flaggedPacketTable">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Src IP</th>
+                            <th>Dst IP</th>
+                            <th>Proto</th>
+                            <th>Len</th>
+                            <th>Summary</th>
+                            <th>Reasons</th>
+                            <th>Payload</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Flagged packets will be appended here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="logs">
+            <h2>All Captured Packets Log (<span id="totalPacketCount">0</span>)</h2>
+            <div class="search-bar">
+                <input type="text" id="allPacketsSearchInput" placeholder="Search all packets (IP, protocol, summary, payload)...">
+                <button id="allPacketsSearchButton">Search</button>
+                <button id="allPacketsClearSearchButton">Clear Search</button>
+            </div>
+            <div class="packet-table-container">
+                <table id="packetTable">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Source IP</th>
+                            <th>Destination IP</th>
+                            <th>Protocol</th>
+                            <th>Length</th>
+                            <th>Summary</th>
+                            <th>Raw Payload</th>
+                            <th>Flags</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Packets will be appended here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
